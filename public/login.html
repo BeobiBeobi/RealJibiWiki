@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <body>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card shadow-sm p-4">
+                        <h1 class="text-center mb-4">로그인</h1>
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="username">사용자 이름</label>
+                                <input type="text" class="form-control" id="username" placeholder="사용자 이름을 입력하세요" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">로그인</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script>
+ document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();  // 기본 폼 제출을 막음
+
+    const username = document.getElementById('username').value;
+
+    // 사용자 이름이 입력되지 않으면 알림 표시
+    if (username) {
+        // 입력된 사용자 이름을 소문자로 변환하고 양쪽 공백 제거 후 저장
+        localStorage.setItem('username', username.trim());
+
+        // 로그인 후 메인 페이지로 리디렉션
+        window.location.href = '/'; // 홈 페이지로 이동 (필요에 맞게 수정)
+    } else {
+        alert('사용자 이름을 입력해주세요.');
+    }
+});
+    </script>
+    
+</body>
+</html>

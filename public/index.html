@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+      .faded-text {
+        font-size: 12px;
+        opacity: 0.5;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .post-item {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+    <title>지비위키</title>
+    <button id="logoutBtn" class="btn btn-danger">로그아웃</button>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">지비위키</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <!-- 게시물 링크 -->
+            
+          <li class="nav-item">
+            <!-- 논란 업로드 링크 -->
+            <a class="nav-link" href="/write">논란 업로드</a>
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link" href="">고민중</a>
+          </li>
+          <li class="nav-item">
+          
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">크리스토퍼 놀란 감독도 놀라는 논란들</h1>
+        <p class="lead">인생을 살면서 기분을 나쁘게 하고 창백한 얼굴에 까만 정장을 입고 죄송합니다 영상을 찍을만한 논란 거리들을 모았어요</p>
+       
+      </div>
+
+      
+    </div>
+  </div>
+  <div class="container mt-4">
+    <h1 class="text-center mb-5">논란들</h1>
+    <div class="row">
+      <!-- 버비 섹션 -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">버비</h4>
+          </div>
+          <div class="card-body">
+            <ul id="BeobiPosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+      <!-- 지니 섹션 -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-success text-white">
+            <h4 class="mb-0">지니</h4>
+          </div>
+          <div class="card-body">
+            <ul id="JiniPosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+      <!-- 지비 섹션 -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">지비</h4>
+          </div>
+          <div class="card-body">
+            <ul id="JibiPosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+      <!-- 똥개 섹션 -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-warning text-white">
+            <h4 class="mb-0">똥개</h4>
+          </div>
+          <div class="card-body">
+            <ul id="DdonggaePosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+      <!-- 서빈 섹션 -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-danger text-white">
+            <h4 class="mb-0">서빈</h4>
+          </div>
+          <div class="card-body">
+            <ul id="SeobinPosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+      <!-- 남규 섹션 -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-secondary text-white">
+            <h4 class="mb-0">남규</h4>
+          </div>
+          <div class="card-body">
+            <ul id="NamgyuPosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">서연</h4>
+          </div>
+          <div class="card-body">
+            <ul id="SeoyeonPosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-success text-white">
+            <h4 class="mb-0">유만</h4>
+          </div>
+          <div class="card-body">
+            <ul id="YuminPosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+    
+    <script>
+       document.getElementById('logoutBtn').addEventListener('click', function() {
+          localStorage.removeItem('username');
+          window.location.href = '/login.html'; // 로그인 페이지로 이동
+      });
+
+      window.onload = async function() {
+        const response = await fetch(
+          `${location.protocol}//${location.host}/posts`
+        );
+
+        const posts = await response.json();
+        const username = localStorage.getItem('username');
+
+        if (!username) {
+          window.location.href = '/login.html';
+          return;
+        }
+
+        const BeobiPosts = document.getElementById('BeobiPosts');
+        const JiniPosts = document.getElementById('JiniPosts');
+        const JibiPosts = document.getElementById('JibiPosts');
+        const DdonggaePosts = document.getElementById('DdonggaePosts');
+        const NamgyuPosts = document.getElementById('NamgyuPosts');
+        const SeobinPosts = document.getElementById('SeobinPosts');
+        const SeoyeonPosts = document.getElementById('SeoyeonPosts');
+        const YuminPosts = document.getElementById('YuminPosts');
+        
+        BeobiPosts.innerHTML = '';
+        JiniPosts.innerHTML = '';
+        JibiPosts.innerHTML = '';
+        DdonggaePosts.innerHTML = '';
+        NamgyuPosts.innerHTML = '';
+        SeoyeonPosts.innerHTML = '';
+        SeobinPosts.innerHTML = '';
+        YuminPosts.innerHTML = '';
+
+        posts.forEach((post, index) => {
+          const listItem = document.createElement('li');
+          listItem.className = 'list-group-item';
+          listItem.innerHTML = 
+            `<div>
+                <strong>${post.title}</strong><br>${post.description}<br><small>${new Date(post.timestamp).toLocaleString()}</small>
+             </div>
+             <div class="faded-text">${post.username}</div>`;
+
+          if (post.username === username) {
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'btn btn-danger btn-sm float-right';
+            deleteButton.textContent = '삭제';
+            deleteButton.onclick = function() {
+              deletePost(index);
+            };
+            listItem.appendChild(deleteButton);
+          }
+
+          if (post.category === '버비') {
+            BeobiPosts.appendChild(listItem);
+          } else if (post.category === '지니') {
+            JiniPosts.appendChild(listItem);
+          } else if (post.category === '지비') {
+            JibiPosts.appendChild(listItem);
+          } else if (post.category === '똥개') {
+            DdonggaePosts.appendChild(listItem);
+          } else if (post.category === '서빈') {
+            SeobinPosts.appendChild(listItem);
+          } else if (post.category === '남규') {
+            NamgyuPosts.appendChild(listItem);
+          }else if (post.category === '서연') {
+            SeoyeonPosts.appendChild(listItem);
+          }else if (post.category === '유만') {
+            YuminPosts.appendChild(listItem);
+          }
+        });
+      };
+
+      function deletePost(index) {
+        const posts = JSON.parse(localStorage.getItem('posts')) || [];
+        posts.splice(index, 1);
+        localStorage.setItem('posts', JSON.stringify(posts));
+        window.location.reload();
+      }
+  </script>
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
